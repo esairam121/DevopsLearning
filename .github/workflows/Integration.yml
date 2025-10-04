@@ -31,12 +31,12 @@ jobs:
       run: mvn clean package
       
     - name: Build Docker image
-      run: docker build -t chairam121/newapp:latest .
+      run: docker build -t chairam121/newapp:v1 .
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Push Docker image
-      run: docker push chairam121/newapp:latest
+      run: docker push chairam121/newapp:v1
 
         
