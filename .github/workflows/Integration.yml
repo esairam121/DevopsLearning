@@ -38,12 +38,12 @@ jobs:
 
       
     - name: Build Docker image
-      run: docker build -t chairam121/newapp:v5 .
+      run: docker build -t chairam121/newapp:v6 .
     
     - name: Image scaning
       uses: aquasecurity/trivy-action@0.33.1
       with:
-        image-ref: 'chairam121/newapp:v5'
+        image-ref: 'chairam121/newapp:v6'
         format: 'table'
         exit-code: '0'  # Fail the pipeline if vulnerabilities are found
         ignore-unfixed: true
@@ -54,7 +54,7 @@ jobs:
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Push Docker image
-      run: docker push chairam121/newapp:v5
+      run: docker push chairam121/newapp:v6
 
   Deploy:
     needs: build
@@ -67,10 +67,10 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          docker pull chairam121/newapp:v5
+          docker pull chairam121/newapp:v6
           docker stop newapp || true
           docker rm newapp || true
-          docker run -d -p 8080:8080 --name newapp chairam121/newapp:v5
+          docker run -d -p 8080:8080 --name newapp chairam121/newapp:v6
 
   
 
