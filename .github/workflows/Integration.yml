@@ -66,7 +66,6 @@ jobs:
         host: ${{ secrets.SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_PORT }}
         script: |
           docker pull chairam121/newapp:v3
           docker stop newapp || true
