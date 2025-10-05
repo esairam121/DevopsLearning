@@ -71,8 +71,7 @@ jobs:
           docker stop newapp || true
           docker rm newapp || true
           docker run -d -p 8080:8080 --name newapp chairam121/newapp:v6
-    - name: Check container logs
-      run: docker logs newapp
+   
 
   
 
