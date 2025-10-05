@@ -67,7 +67,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          docker pull chairam121/newapp:v3
+          docker pull chairam121/newapp:v4
           docker stop newapp || true
           docker rm newapp || true
           docker run -d -p 8080:8080 --name newapp chairam121/newapp:v3
